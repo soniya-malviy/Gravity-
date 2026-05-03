@@ -1,6 +1,5 @@
 import { useAppStore } from '../store/appStore';
 import { schemaAgent } from './schemaAgent';
-import { anomalyAgent } from './anomalyAgent';
 import { detectPIIColumns, redactPII } from '../utils/piiScanner';
 import axios from 'axios';
 

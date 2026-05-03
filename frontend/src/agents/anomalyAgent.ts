@@ -15,7 +15,7 @@ export interface DeepAnomalyResponse {
 }
 
 export const anomalyAgent = {
-  async detect(records: any[], schema: string, apiId: string): Promise<DeepAnomalyResponse> {
+  async detect(_records: any[], schema: string, apiId: string): Promise<DeepAnomalyResponse> {
     const store = useAppStore.getState();
     const data = store.sourceData[apiId];
     

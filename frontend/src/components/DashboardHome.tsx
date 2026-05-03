@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAppStore } from '../store/appStore';
 import { useNavigate } from 'react-router-dom';
 import endpoints from '../config/endpoints.json';
-import { ShieldCheck, Zap, ArrowRight, Server, Clock, BarChart3, Plus, Activity, FileText, Edit2, Trash2, Globe, Database, Cpu } from 'lucide-react';
+import { ShieldCheck, Zap, ArrowRight, Server, Clock, Plus, Activity, Edit2, Trash2, Globe, Database, Cpu } from 'lucide-react';
 import { CustomApiPanel } from './CustomApiPanel';
 import { CSVUploadPanel } from './CSVUploadPanel';
 

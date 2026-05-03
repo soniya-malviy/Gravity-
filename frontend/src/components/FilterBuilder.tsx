@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAppStore, type FilterState } from '../store/appStore';
-import { Filter, Plus, X, ChevronDown, ChevronUp, Check } from 'lucide-react';
+import { Filter, X, ChevronDown, ChevronUp, Check } from 'lucide-react';
 
 export const FilterBuilder: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);

@@ -2,7 +2,7 @@ import React from 'react';
 import endpoints from '../config/endpoints.json';
 import { useAppStore, type ApiConfig } from '../store/appStore';
 import { fetchGraphQLData } from '../utils/graphqlFetcher';
-import { RefreshCw, Zap, Plus, Trash2, CheckSquare, Square, Settings as SettingsIcon, FileText } from 'lucide-react';
+import { RefreshCw, Zap, Plus, CheckSquare, Square, Settings as SettingsIcon, FileText } from 'lucide-react';
 import { CustomApiPanel } from './CustomApiPanel';
 import { SettingsPanel } from './SettingsPanel';
 import { CSVUploadPanel } from './CSVUploadPanel';
@@ -17,7 +17,6 @@ export const ConfigPanel: React.FC = () => {
     setError, 
     isLoading, 
     customApis, 
-    removeCustomApi,
     comparisonMode,
     setComparisonMode
   } = useAppStore();

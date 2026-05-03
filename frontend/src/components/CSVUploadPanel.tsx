@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useAppStore } from '../store/appStore';
-import { parseCSV, normalizeCSVToMatrix, type ParseResult } from '../utils/csvParser';
+import { parseCSV, type ParseResult } from '../utils/csvParser';
 import { sampleDatasets } from '../data/sampleDatasets';
 import { Upload, FileText, X, Settings2, BarChart3, Clock, Database, Trash2, ArrowRight } from 'lucide-react';
 
@@ -46,7 +46,6 @@ export const CSVUploadPanel: React.FC<CSVUploadPanelProps> = ({ onClose }) => {
     if (!parseResult) return;
 
     const apiId = `csv_${Date.now()}`;
-    const matrix = normalizeCSVToMatrix(parseResult.rows, parseResult.headers);
 
     // Create a virtual API config for the CSV
     const virtualApi = {

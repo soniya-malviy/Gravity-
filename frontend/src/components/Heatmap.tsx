@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import * as d3 from 'd3';
 import { useAppStore } from '../store/appStore';
 import { HeatmapToolbar } from './HeatmapToolbar';
 import { ContextMenu } from './ContextMenu';
