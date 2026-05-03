@@ -7,6 +7,43 @@ export const MissingPatterns: React.FC = () => {
   const primaryApi = selectedApis[0];
   const data = sourceData[primaryApi?.id];
 
+  const metrics = React.useMemo(() => {
+    if (!data?.densityMatrix?.rows || data.densityMatrix.rows.length === 0) return null;
+    
+    const rows = data.densityMatrix.rows;
+    const numCols = rows[0].length;
+    
+    // 1. Bad Record Clusters (>50% missing)
+    const badRecords = rows.filter(row => {
+      const missingCount = row.filter(cell => !cell.isComplete).length;
+      return (missingCount / numCols) > 0.5;
+    });
+    const badPercent = (badRecords.length / rows.length) * 100;
+
+    // 2. Drift Alert (compare last 20% vs first 80%)
+    const splitIdx = Math.floor(rows.length * 0.8);
+    const firstPart = rows.slice(0, splitIdx);
+    const lastPart = rows.slice(splitIdx);
+
+    const getAvgMissing = (group: any[][]) => {
+      if (group.length === 0) return 0;
+      const totalCells = group.length * numCols;
+      const missingCells = group.reduce((acc, row) => acc + row.filter(c => !c.isComplete).length, 0);
+      return (missingCells / totalCells) * 100;
+    };
+
+    const firstMissing = getAvgMissing(firstPart);
+    const lastMissing = getAvgMissing(lastPart);
+    const drift = lastMissing - firstMissing;
+
+    return {
+      badPercent,
+      drift,
+      lastRowsCount: lastPart.length,
+      driftStatus: drift > 5 ? 'Degrading' : drift < -5 ? 'Improving' : 'Stable'
+    };
+  }, [data]);
+
   if (!data || data.source !== 'csv') return null;
 
   return (
@@ -53,7 +90,7 @@ export const MissingPatterns: React.FC = () => {
               <Layers className="w-4 h-4 text-purple-400" />
               <h3 className="text-xs font-black text-white uppercase tracking-widest">Bad Record Clusters</h3>
             </div>
-            <div className="text-4xl font-black text-white">12%</div>
+            <div className="text-4xl font-black text-white">{metrics?.badPercent.toFixed(0)}%</div>
             <p className="text-[9px] text-slate-500 font-bold uppercase tracking-widest leading-relaxed">
               of records have more than 50% missing fields. These likely represent aborted data entries.
             </p>
@@ -64,9 +101,14 @@ export const MissingPatterns: React.FC = () => {
               <Zap className="w-4 h-4 text-orange-400" />
               <h3 className="text-xs font-black text-white uppercase tracking-widest">Drift Alert</h3>
             </div>
-            <div className="text-xl font-black text-orange-400 uppercase">Degrading</div>
+            <div className={`text-xl font-black uppercase ${
+              metrics?.driftStatus === 'Degrading' ? 'text-red-400' : 
+              metrics?.driftStatus === 'Improving' ? 'text-green-400' : 'text-slate-400'
+            }`}>
+              {metrics?.driftStatus}
+            </div>
             <p className="text-[9px] text-slate-500 font-bold uppercase tracking-widest leading-relaxed">
-              Missingness increases by 15% in the final 200 rows of this dataset.
+              Missingness {metrics?.drift! > 0 ? 'increases' : 'decreases'} by {Math.abs(metrics?.drift || 0).toFixed(1)}% in the final {metrics?.lastRowsCount} rows of this dataset.
             </p>
           </div>
         </div>
