@@ -20,6 +20,7 @@ export interface FieldSummary {
   completeness: number;
   nullCount: number;
   presentCount: number;
+  type: string;
 }
 
 /**
@@ -184,6 +185,7 @@ export const computeFieldSummary = (records: any[]): FieldSummary[] => {
       completeness: (presentCount / total) * 100,
       nullCount: total - presentCount,
       presentCount,
+      type: rows[0][colIndex].type
     };
   });
 };

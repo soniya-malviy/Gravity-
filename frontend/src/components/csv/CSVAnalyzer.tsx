@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { LayoutGrid, BarChart3, Grid3X3, Layers, FileText, ClipboardList, ArrowLeftRight } from 'lucide-react';
+import { LayoutGrid, BarChart3, Grid3X3, Layers, FileText, ClipboardList } from 'lucide-react';
 import { Heatmap } from '../Heatmap';
 import { ColumnProfiles } from './ColumnProfiles';
 import { DistributionCharts } from './DistributionCharts';
 import { CorrelationMatrix } from './CorrelationMatrix';
 import { MissingPatterns } from './MissingPatterns';
 import { DataQualityReport } from './DataQualityReport';
-import { ComparisonView } from './ComparisonView';
 import { useAppStore } from '../../store/appStore';
 
 export const CSVAnalyzer: React.FC = () => {

@@ -46,8 +46,6 @@ export const CorrelationMatrix: React.FC = () => {
               </div>
               {fields.map((f2, j) => {
                 const correlation = i === j ? 1 : Math.random() * 0.8;
-                const opacity = correlation * 100;
-                const isPositive = true;
 
                 return (
                   <div 

@@ -1,6 +1,6 @@
 import React, { useRef, useMemo } from 'react';
 import { useAppStore } from '../../store/appStore';
-import { FileText, Download, ShieldCheck, AlertTriangle, Info, CheckCircle2, Star, Loader2, Zap } from 'lucide-react';
+import { FileText, Download, ShieldCheck, AlertTriangle, CheckCircle2, Star, Loader2, Zap } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { detectPIIColumns } from '../../utils/piiScanner';

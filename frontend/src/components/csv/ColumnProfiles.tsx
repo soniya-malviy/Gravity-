@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppStore } from '../../store/appStore';
-import { BarChart3, Info, AlertTriangle, CheckCircle2, TrendingUp, Hash, Type, Calendar } from 'lucide-react';
+import { TrendingUp, Hash, Type, Calendar } from 'lucide-react';
 
 export const ColumnProfiles: React.FC = () => {
   const { selectedApis, sourceData } = useAppStore();
@@ -9,7 +9,7 @@ export const ColumnProfiles: React.FC = () => {
 
   if (!data || data.source !== 'csv') return null;
 
-  const { fieldSummary, rawData, correlations } = data;
+  const { fieldSummary, rawData } = data;
 
   const getProfile = (fieldName: string) => {
     const values = rawData.map(r => r[fieldName]);

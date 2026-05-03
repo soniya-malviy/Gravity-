@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAppStore } from '../store/appStore';
-import { X, Bell, RefreshCw, AlertTriangle, Type } from 'lucide-react';
+import { X, RefreshCw, AlertTriangle, Type } from 'lucide-react';
 
 interface SettingsPanelProps {
   onClose: () => void;
