@@ -1,0 +1,40 @@
+{
+  "apis": [
+    {
+      "id": "pokeapi",
+      "name": "PokeAPI",
+      "endpoint": "https://beta.pokeapi.co/graphql/v1beta",
+      "auth": null,
+      "query": "{ pokemon_v2_pokemon(limit: 50) { id name base_experience height weight pokemon_v2_pokemontypes { pokemon_v2_type { name } } pokemon_v2_pokemonabilities { pokemon_v2_ability { name } } pokemon_v2_pokemonstats { base_stat pokemon_v2_stat { name } } } }",
+      "rootKey": "pokemon_v2_pokemon",
+      "fields": ["id","name","base_experience","height","weight","types","abilities","stats"]
+    },
+    {
+      "id": "rickandmorty",
+      "name": "Rick & Morty",
+      "endpoint": "https://rickandmortyapi.com/graphql",
+      "auth": null,
+      "query": "{ characters(page: 1) { results { id name status species type gender image origin { name } location { name } episode { id } } } }",
+      "rootKey": "characters.results",
+      "fields": ["id","name","status","species","type","gender","origin","location","episode"]
+    },
+    {
+      "id": "anilist",
+      "name": "AniList (Trending)",
+      "endpoint": "https://graphql.anilist.co",
+      "auth": null,
+      "query": "{ Page(page: 1, perPage: 50) { media(sort: TRENDING_DESC, type: ANIME) { id title { english native } episodes status genres averageScore popularity } } }",
+      "rootKey": "Page.media",
+      "fields": ["id","title","episodes","status","genres","averageScore","popularity"]
+    },
+    {
+      "id": "countries",
+      "name": "Countries",
+      "endpoint": "https://countries.trevorblades.com/",
+      "auth": null,
+      "query": "{ countries { code name capital currency phone } }",
+      "rootKey": "countries",
+      "fields": ["code","name","capital","currency","phone"]
+    }
+  ]
+}
