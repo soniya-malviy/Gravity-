@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const BACKEND_URL = 'http://localhost:3001/api';
+// Dynamically determine the backend URL based on environment variables
+// Falls back to localhost for local development
+export const BACKEND_URL = (import.meta.env.VITE_API_URL || 'http://localhost:3001').replace(/\/$/, '') + '/api';
 
 export const fetchGraphQLData = async (endpoint: string, query: string, auth: string | null = null) => {
   try {

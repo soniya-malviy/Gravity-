@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { BACKEND_URL } from '../utils/graphqlFetcher';
 
 export const schemaAgent = {
   async analyze(records: any[]) {
     try {
-      const response = await axios.post('http://localhost:3001/api/ai/analyze', {
+      const response = await axios.post(`${BACKEND_URL}/ai/analyze`, {
         action: 'detect_anomalies', // Re-using detect_anomalies for basic schema if needed
         context: {
           fieldSummary: [], // Orchestrator will pass better context

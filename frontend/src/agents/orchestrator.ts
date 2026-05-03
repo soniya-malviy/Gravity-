@@ -1,6 +1,7 @@
 import { useAppStore } from '../store/appStore';
 import { schemaAgent } from './schemaAgent';
 import { detectPIIColumns, redactPII } from '../utils/piiScanner';
+import { BACKEND_URL } from '../utils/graphqlFetcher';
 import axios from 'axios';
 
 export const orchestrator = {
@@ -20,7 +21,7 @@ export const orchestrator = {
       // 2. Schema Analysis
       let schemaInfo = "";
       if (data.source === 'csv') {
-        const schemaRes = await axios.post('http://localhost:3001/api/ai/analyze', {
+        const schemaRes = await axios.post(`${BACKEND_URL}/ai/analyze`, {
           action: 'csv_schema',
           context: {
             fieldSummary: data.fieldSummary,
@@ -34,7 +35,7 @@ export const orchestrator = {
       store.setSchemaInfo(schemaInfo);
       
       // 3. Deep Anomaly Detection
-      const anomalyRes = await axios.post('http://localhost:3001/api/ai/analyze', {
+      const anomalyRes = await axios.post(`${BACKEND_URL}/ai/analyze`, {
         action: data.source === 'csv' ? 'csv_anomaly' : 'detect_anomalies',
         context: {
           source: data.source,

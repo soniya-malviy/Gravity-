@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useAppStore, type Anomaly } from '../store/appStore';
+import { BACKEND_URL } from '../utils/graphqlFetcher';
 
 export interface DeepAnomalyResponse {
   anomalies: (Anomaly & { 
@@ -30,7 +31,7 @@ export const anomalyAgent = {
       });
     }
 
-    const response = await axios.post('http://localhost:3001/api/ai/analyze', {
+    const response = await axios.post(`${BACKEND_URL}/ai/analyze`, {
       action: 'detect_anomalies',
       context: {
         fieldSummary: data?.fieldSummary || [],
