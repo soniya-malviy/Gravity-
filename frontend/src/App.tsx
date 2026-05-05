@@ -8,7 +8,7 @@ import { CSVAnalyzer } from './components/csv/CSVAnalyzer';
 import { Footer } from './components/Footer';
 import { useAppStore } from './store/appStore';
 import { orchestrator } from './agents/orchestrator';
-import { LayoutGrid, Home, BarChart3, Settings, Database, Sun, Moon } from 'lucide-react';
+import { LayoutGrid, Home, Database } from 'lucide-react';
 
 const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { sourceData, error, selectedApis, theme, setTheme } = useAppStore();
@@ -76,22 +76,7 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <LayoutGrid className="w-7 h-7" />
             {location.pathname === '/analyze' && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-indigo-500 rounded-r-full" />}
           </Link>
-          <button className="p-5 rounded-[1.25rem] text-slate-700 hover:text-slate-300 transition-all hover:bg-white/5">
-            <BarChart3 className="w-7 h-7" />
-          </button>
         </nav>
-
-        <button 
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          className="p-5 rounded-[1.25rem] text-slate-700 hover:text-slate-300 transition-all hover:bg-white/5 mb-4"
-          title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
-        >
-          {theme === 'dark' ? <Sun className="w-7 h-7 text-orange-400" /> : <Moon className="w-7 h-7 text-indigo-500" />}
-        </button>
-
-        <button className="p-5 rounded-[1.25rem] text-slate-700 hover:text-slate-300 transition-all hover:bg-white/5 mb-4">
-          <Settings className="w-7 h-7" />
-        </button>
       </aside>
 
       {/* Main Content */}

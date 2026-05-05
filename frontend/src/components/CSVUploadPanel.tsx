@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppStore } from '../store/appStore';
 import { parseCSV, type ParseResult } from '../utils/csvParser';
 import { sampleDatasets } from '../data/sampleDatasets';
@@ -9,6 +10,7 @@ interface CSVUploadPanelProps {
 }
 
 export const CSVUploadPanel: React.FC<CSVUploadPanelProps> = ({ onClose }) => {
+  const navigate = useNavigate();
   const [file, setFile] = useState<File | null>(null);
   const [parseResult, setParseResult] = useState<ParseResult | null>(null);
   const [isParsing, setIsParsing] = useState(false);
@@ -70,6 +72,7 @@ export const CSVUploadPanel: React.FC<CSVUploadPanelProps> = ({ onClose }) => {
     });
 
     onClose();
+    navigate('/analyze');
   };
 
   const handleLoadSample = (key: keyof typeof sampleDatasets, name: string) => {
@@ -90,6 +93,7 @@ export const CSVUploadPanel: React.FC<CSVUploadPanelProps> = ({ onClose }) => {
     setApiData(apiId, data, 'csv');
     setSelectedApis([virtualApi]);
     onClose();
+    navigate('/analyze');
   };
 
   return (
