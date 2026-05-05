@@ -39,10 +39,10 @@ export const DashboardHome: React.FC = () => {
               <span className="text-[10px] font-black text-indigo-400 uppercase tracking-widest">Gravity Engine v4.0 Active</span>
             </div>
             <h1 className="text-5xl lg:text-7xl font-black text-white tracking-tighter leading-none">
-              OBSERVE <br /> <span className="text-indigo-500">EVERY DIMENSION.</span>
+              AUTONOMOUS <br /> <span className="text-indigo-500">DATA FIDELITY.</span>
             </h1>
             <p className="text-slate-500 text-lg font-medium max-w-xl leading-relaxed">
-              Autonomous data observability for high-throughput GraphQL and CSV streams. Detect drift, anomalies, and schema violations in real-time.
+              An agentic observability engine for high-throughput data streams. Automatically detect drift, map missingness patterns, and secure data integrity in real-time.
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
               <button 

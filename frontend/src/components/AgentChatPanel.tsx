@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useAppStore } from '../store/appStore';
 import { Send, Bot, User, Loader2, Sparkles, X, Minimize2, Maximize2 } from 'lucide-react';
 import axios from 'axios';
+import { BACKEND_URL } from '../utils/graphqlFetcher';
 
 export const AgentChatPanel: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +33,7 @@ export const AgentChatPanel: React.FC = () => {
       const primaryApi = selectedApis[0];
       const data = sourceData[primaryApi?.id];
 
-      const response = await axios.post('http://localhost:3001/api/ai/analyze', {
+      const response = await axios.post(`${BACKEND_URL}/ai/analyze`, {
         action: 'chat',
         context: {
           message: userMessage,

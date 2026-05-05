@@ -3,6 +3,7 @@ import { Search, Loader2 } from 'lucide-react';
 import { useAppStore } from '../store/appStore';
 import { FilterBuilder } from './FilterBuilder';
 import axios from 'axios';
+import { BACKEND_URL } from '../utils/graphqlFetcher';
 
 export const NLQueryBar: React.FC = () => {
   const [query, setQuery] = useState('');
@@ -17,7 +18,7 @@ export const NLQueryBar: React.FC = () => {
       const primaryApi = selectedApis[0];
       const data = sourceData[primaryApi.id];
 
-      const response = await axios.post('http://localhost:3001/api/ai/analyze', {
+      const response = await axios.post(`${BACKEND_URL}/ai/analyze`, {
         action: 'nl_query',
         context: {
           query,

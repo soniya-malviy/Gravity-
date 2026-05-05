@@ -49,4 +49,16 @@ app.get('/api/health', async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Backend server running on port ${PORT}`);
+  
+  // Self-ping mechanism to prevent Render free-tier sleep
+  const pingInterval = 14 * 60 * 1000; // 14 minutes
+  setInterval(async () => {
+    try {
+      const url = process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`;
+      const response = await fetch(`${url}/api/health`);
+      console.log(`[Self-Ping] Kept service awake. Status: ${response.status} at ${new Date().toISOString()}`);
+    } catch (error) {
+      console.error('[Self-Ping Error] Failed to ping health endpoint:', error.message);
+    }
+  }, pingInterval);
 });
