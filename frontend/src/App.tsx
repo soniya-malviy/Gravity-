@@ -11,7 +11,7 @@ import { orchestrator } from './agents/orchestrator';
 import { LayoutGrid, Home, Database } from 'lucide-react';
 
 const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { sourceData, error, selectedApis, theme, setTheme } = useAppStore();
+  const { sourceData, error, selectedApis, theme } = useAppStore();
   const location = useLocation();
 
   useEffect(() => {
